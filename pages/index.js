@@ -1,42 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import Head from "next/head";
+import Link from "next/link";
+import Logo from "@/components/Logo";
+import { useRouter } from "next/router";
+import randomCodeGenerator from "../utils/randomCodeGenerator";
 import styles from "@/styles/Home.module.css";
 import styled from "styled-components";
 
 export default function Home() {
-  const mathRushRef = useRef(null);
-  const letters = "0123456789";
-
-  const handleHover = () => {
-    let iteration = 0;
-    let interval = setInterval(() => {
-      if (mathRushRef.current) {
-        mathRushRef.current.innerText = mathRushRef.current.innerText
-          .split("")
-          .map((letter, index) => {
-            if (index < iteration) {
-              return mathRushRef.current.dataset.value[index];
-            }
-            return letters[Math.floor(Math.random() * 26) % 10];
-          })
-          .join("");
-      }
-      if (iteration >= mathRushRef.current.dataset.value.length) {
-        clearInterval(interval);
-      }
-      iteration += 1 / 5;
-    }, 30);
-  };
-
-  useEffect(() => {
-    handleHover();
-  }, []);
-
-  useEffect(() => {
-    if (mathRushRef.current) {
-      mathRushRef.current.onmouseover = handleHover;
-    }
-  }, [mathRushRef]);
+  const [roomCode, setRoomCode] = useState("");
 
   return (
     <>
@@ -48,16 +20,22 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Section>
-          <div className="title" ref={mathRushRef} data-value="MATHRUSH">
-            MATHRUSH
-          </div>
+          <Logo />
           <div className="selector">
             <div className="join">
-              <input />
-              <button>Join game</button>
+              <input
+                type="text"
+                placeholder="Game code"
+                onChange={(event) => setRoomCode(event.target.value)}
+              />
+              <Link href={`/play?roomCode=${roomCode}`}>
+                <button>Join game</button>
+              </Link>
             </div>
             <div>OR</div>
-            <button>Create game</button>
+            <Link href={`/play?roomCode=${randomCodeGenerator(5)}`}>
+              <button>Create game</button>
+            </Link>
           </div>
         </Section>
       </main>
@@ -70,13 +48,6 @@ const Section = styled.div`
   flex-direction: column;
   font-family: var(--font-mono);
   transform: rotatex(10deg);
-
-  .title {
-    text-align: center;
-    font-size: 6rem;
-    user-select: none;
-    margin-bottom: 1rem;
-  }
 
   .selector {
     display: flex;
@@ -94,10 +65,12 @@ const Section = styled.div`
     gap: 1rem;
     input {
       border-radius: 0.3rem;
-      border: none;
-      background-color: white;
-      color: var(--darkBlue);
-      padding: 0.5rem 1rem;
+      border: 2px solid white;
+      background-color: transparent;
+
+      color: white;
+      font-size: 1.2rem;
+      padding: 0.2rem 0.5rem;
     }
   }
 
