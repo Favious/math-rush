@@ -46,7 +46,7 @@ export default function Home() {
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: var(--font-mono);
+  /* font-family: var(--font-mono); */
   transform: rotatex(10deg);
 
   .selector {
