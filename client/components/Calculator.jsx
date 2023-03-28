@@ -22,7 +22,7 @@ export default function Calculator() {
 const Calc = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
+  width: 40%;
   gap: 0.5rem;
   font-family: var(--font-space);
   button {
@@ -30,5 +30,12 @@ const Calc = styled.div`
     flex: 1 1 30%;
     padding: 0.7rem;
     user-select: none;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 80%;
+    button {
+      flex: 1 1 30%;
+    }
   }
 `;
