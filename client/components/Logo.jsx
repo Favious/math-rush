@@ -19,9 +19,12 @@ export default function Logo() {
           })
           .join("");
       }
-      if (iteration >= mathRushRef.current.dataset.value.length) {
-        clearInterval(interval);
+      if (mathRushRef.current && mathRushRef.current.dataset.value) {
+        if (iteration >= mathRushRef.current.dataset.value.length) {
+          clearInterval(interval);
+        }
       }
+
       iteration += 1 / 5;
     }, 30);
   };

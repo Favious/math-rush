@@ -34,6 +34,7 @@ const Status = styled.div`
   .score {
     width: 100%;
     text-align: end;
+    user-select: none;
   }
 
   .bar-container {

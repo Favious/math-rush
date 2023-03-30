@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { useRouter } from "next/router";
 import randomCodeGenerator from "../utils/randomCodeGenerator";
 import styles from "@/styles/Home.module.css";
 import styled from "styled-components";
@@ -28,12 +27,18 @@ export default function Home() {
                 placeholder="Game code"
                 onChange={(event) => setRoomCode(event.target.value)}
               />
-              <Link href={`/play?roomCode=${roomCode}`}>
+              <Link
+                href={`/play?roomCode=${roomCode}`}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <button>Join game</button>
               </Link>
             </div>
             <div>OR</div>
-            <Link href={`/play?roomCode=${randomCodeGenerator(5)}`}>
+            <Link
+              href={`/play?roomCode=${randomCodeGenerator(5)}`}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <button>Create game</button>
             </Link>
           </div>
@@ -64,6 +69,7 @@ const Section = styled.div`
     flex-direction: column;
     gap: 1rem;
     input {
+      width: 250px;
       border-radius: 0.3rem;
       border: 2px solid white;
       background-color: transparent;
@@ -79,6 +85,7 @@ const Section = styled.div`
     position: relative;
     margin: 0.5em 0;
     padding: 0.8em 2.2em;
+    width: 250px;
     cursor: pointer;
 
     background: #ffffff;

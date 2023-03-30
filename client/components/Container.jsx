@@ -59,5 +59,6 @@ const Section = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  width: 100%;
+  height: 60vh;
 `;

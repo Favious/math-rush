@@ -123,7 +123,7 @@ export default [
     firstTerm: 21,
     secondTerm: 21,
     operation: "x",
-    answer: 21,
+    answer: 441,
   },
   {
     firstTerm: 14,
