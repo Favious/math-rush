@@ -4,11 +4,15 @@ import Calculator from "@/components/Calculator";
 import StatusBar from "@/components/StatusBar";
 import Operation from "@/components/Operation";
 import operations from "../utils/operations";
+import useSound from "use-sound";
+import beepSound from "../utils/beep.mp3";
 
 export default function Container() {
   const [answer, setAnswer] = useState(0);
   const [currentOperation, setCurrentOperation] = useState({});
   const [numbers, setNumbers] = useState([]);
+  const [operationsMade, setOperationsMade] = useState(0);
+  const [play] = useSound(beepSound);
 
   useEffect(() => {
     const numbers = [];
@@ -29,6 +33,8 @@ export default function Container() {
       setCurrentOperation(operations[numbersCopy.shift()]);
       setNumbers(numbersCopy);
       setAnswer(0);
+      play();
+      setOperationsMade(operationsMade + 1);
     }
   }, [answer]);
 
@@ -39,7 +45,7 @@ export default function Container() {
   return (
     <Section>
       <Operation operation={currentOperation} answer={answer} />
-      <StatusBar />
+      <StatusBar operationsMade={operationsMade} />
       <Calculator
         currentOperation={currentOperation}
         updateAnswer={updateAnswer}

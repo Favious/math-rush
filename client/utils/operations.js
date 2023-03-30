@@ -2,37 +2,37 @@ export default [
   {
     firstTerm: 100,
     secondTerm: 20,
-    operation: "/",
+    operation: "÷",
     answer: 5,
   },
   {
     firstTerm: 80,
     secondTerm: 5,
-    operation: "/",
+    operation: "÷",
     answer: 16,
   },
   {
     firstTerm: 7,
     secondTerm: 6,
-    operation: "*",
+    operation: "x",
     answer: 42,
   },
   {
     firstTerm: 24,
     secondTerm: 4,
-    operation: "/",
+    operation: "÷",
     answer: 6,
   },
   {
     firstTerm: 75,
     secondTerm: 25,
-    operation: "/",
+    operation: "÷",
     answer: 3,
   },
   {
     firstTerm: 6,
     secondTerm: 500,
-    operation: "*",
+    operation: "x",
     answer: 3000,
   },
   {
@@ -44,7 +44,7 @@ export default [
   {
     firstTerm: 21,
     secondTerm: 21,
-    operation: "*",
+    operation: "x",
     answer: 441,
   },
   {
@@ -62,13 +62,13 @@ export default [
   {
     firstTerm: 8,
     secondTerm: 15,
-    operation: "*",
+    operation: "x",
     answer: 120,
   },
   {
     firstTerm: 65,
     secondTerm: 65,
-    operation: "*",
+    operation: "x",
     answer: 4225,
   },
   {
@@ -80,13 +80,13 @@ export default [
   {
     firstTerm: 17,
     secondTerm: 3,
-    operation: "*",
+    operation: "x",
     answer: 51,
   },
   {
     firstTerm: 109,
     secondTerm: 109,
-    operation: "*",
+    operation: "x",
     answer: 11881,
   },
   {
@@ -98,13 +98,13 @@ export default [
   {
     firstTerm: 21,
     secondTerm: 21,
-    operation: "*",
+    operation: "x",
     answer: 441,
   },
   {
     firstTerm: 14,
     secondTerm: 500,
-    operation: "*",
+    operation: "x",
     answer: 7000,
   },
   {
@@ -116,25 +116,25 @@ export default [
   {
     firstTerm: 120,
     secondTerm: 20,
-    operation: "/",
+    operation: "÷",
     answer: 6,
   },
   {
     firstTerm: 21,
     secondTerm: 21,
-    operation: "*",
+    operation: "x",
     answer: 21,
   },
   {
     firstTerm: 14,
     secondTerm: 13,
-    operation: "*",
+    operation: "x",
     answer: 182,
   },
   {
     firstTerm: 10,
     secondTerm: 2,
-    operation: "/",
+    operation: "÷",
     answer: 5,
   },
   {
@@ -146,13 +146,13 @@ export default [
   {
     firstTerm: 53,
     secondTerm: 53,
-    operation: "*",
+    operation: "x",
     answer: 2809,
   },
   {
     firstTerm: 19,
     secondTerm: 18,
-    operation: "*",
+    operation: "x",
     answer: 342,
   },
   {
@@ -164,25 +164,25 @@ export default [
   {
     firstTerm: 5,
     secondTerm: 15,
-    operation: "*",
+    operation: "x",
     answer: 75,
   },
   {
     firstTerm: 13,
     secondTerm: 11,
-    operation: "*",
+    operation: "x",
     answer: 143,
   },
   {
     firstTerm: 27,
     secondTerm: 11,
-    operation: "*",
+    operation: "x",
     answer: 297,
   },
   {
     firstTerm: 10,
     secondTerm: 10,
-    operation: "*",
+    operation: "x",
     answer: 100,
   },
   {
@@ -194,25 +194,25 @@ export default [
   {
     firstTerm: 18,
     secondTerm: 19,
-    operation: "*",
+    operation: "x",
     answer: 342,
   },
   {
     firstTerm: 750,
     secondTerm: 50,
-    operation: "/",
+    operation: "÷",
     answer: 15,
   },
   {
     firstTerm: 19,
     secondTerm: 4,
-    operation: "*",
+    operation: "x",
     answer: 76,
   },
   {
     firstTerm: 115,
     secondTerm: 115,
-    operation: "*",
+    operation: "x",
     answer: 13225,
   },
   {
@@ -224,25 +224,25 @@ export default [
   {
     firstTerm: 40,
     secondTerm: 5,
-    operation: "*",
+    operation: "x",
     answer: 200,
   },
   {
     firstTerm: 24,
     secondTerm: 9,
-    operation: "*",
+    operation: "x",
     answer: 216,
   },
   {
     firstTerm: 3,
     secondTerm: 7,
-    operation: "*",
+    operation: "x",
     answer: 21,
   },
   {
     firstTerm: 58,
     secondTerm: 58,
-    operation: "*",
+    operation: "x",
     answer: 3364,
   },
   {
@@ -254,13 +254,13 @@ export default [
   {
     firstTerm: 42,
     secondTerm: 42,
-    operation: "*",
+    operation: "x",
     answer: 1764,
   },
   {
     firstTerm: 3,
     secondTerm: 8,
-    operation: "*",
+    operation: "x",
     answer: 24,
   },
   {
@@ -272,67 +272,67 @@ export default [
   {
     firstTerm: 14,
     secondTerm: 14,
-    operation: "*",
+    operation: "x",
     answer: 196,
   },
   {
     firstTerm: 49,
     secondTerm: 49,
-    operation: "*",
+    operation: "x",
     answer: 2401,
   },
   {
     firstTerm: 50,
     secondTerm: 3,
-    operation: "*",
+    operation: "x",
     answer: 150,
   },
   {
     firstTerm: 16,
     secondTerm: 99,
-    operation: "*",
+    operation: "x",
     answer: 1584,
   },
   {
     firstTerm: 15,
     secondTerm: 15,
-    operation: "*",
+    operation: "x",
     answer: 225,
   },
   {
     firstTerm: 14,
     secondTerm: 11,
-    operation: "*",
+    operation: "x",
     answer: 154,
   },
   {
     firstTerm: 105,
     secondTerm: 105,
-    operation: "*",
+    operation: "x",
     answer: 11025,
   },
   {
     firstTerm: 13,
     secondTerm: 9,
-    operation: "*",
+    operation: "x",
     answer: 117,
   },
   {
     firstTerm: 75,
     secondTerm: 25,
-    operation: "/",
+    operation: "÷",
     answer: 3,
   },
   {
     firstTerm: 21,
     secondTerm: 11,
-    operation: "*",
+    operation: "x",
     answer: 231,
   },
   {
     firstTerm: 1,
     secondTerm: 1,
-    operation: "*",
+    operation: "x",
     answer: 1,
   },
   {
@@ -344,43 +344,43 @@ export default [
   {
     firstTerm: 8,
     secondTerm: 8,
-    operation: "*",
+    operation: "x",
     answer: 64,
   },
   {
     firstTerm: 17,
     secondTerm: 19,
-    operation: "*",
+    operation: "x",
     answer: 323,
   },
   {
     firstTerm: 13,
     secondTerm: 13,
-    operation: "*",
+    operation: "x",
     answer: 169,
   },
   {
     firstTerm: 17,
     secondTerm: 4,
-    operation: "*",
+    operation: "x",
     answer: 68,
   },
   {
     firstTerm: 15,
     secondTerm: 8,
-    operation: "*",
+    operation: "x",
     answer: 120,
   },
   {
     firstTerm: 2,
     secondTerm: 6,
-    operation: "*",
+    operation: "x",
     answer: 12,
   },
   {
     firstTerm: 42,
     secondTerm: 48,
-    operation: "*",
+    operation: "x",
     answer: 2016,
   },
   {
@@ -392,13 +392,13 @@ export default [
   {
     firstTerm: 7,
     secondTerm: 7,
-    operation: "*",
+    operation: "x",
     answer: 49,
   },
   {
     firstTerm: 41,
     secondTerm: 21,
-    operation: "*",
+    operation: "x",
     answer: 861,
   },
   {
@@ -422,13 +422,13 @@ export default [
   {
     firstTerm: 14,
     secondTerm: 99,
-    operation: "*",
+    operation: "x",
     answer: 1386,
   },
   {
     firstTerm: 30,
     secondTerm: 50,
-    operation: "*",
+    operation: "x",
     answer: 1500,
   },
   {
@@ -458,19 +458,19 @@ export default [
   {
     firstTerm: 31,
     secondTerm: 3,
-    operation: "*",
+    operation: "x",
     answer: 93,
   },
   {
     firstTerm: 47,
     secondTerm: 20,
-    operation: "*",
+    operation: "x",
     answer: 940,
   },
   {
     firstTerm: 28,
     secondTerm: 25,
-    operation: "*",
+    operation: "x",
     answer: 700,
   },
   {
@@ -482,7 +482,7 @@ export default [
   {
     firstTerm: 47,
     secondTerm: 50,
-    operation: "*",
+    operation: "x",
     answer: 2350,
   },
   {
@@ -494,19 +494,19 @@ export default [
   {
     firstTerm: 49,
     secondTerm: 3,
-    operation: "*",
+    operation: "x",
     answer: 147,
   },
   {
     firstTerm: 1950,
     secondTerm: 50,
-    operation: "/",
+    operation: "÷",
     answer: 39,
   },
   {
     firstTerm: 32,
     secondTerm: 19,
-    operation: "*",
+    operation: "x",
     answer: 608,
   },
   {
@@ -518,13 +518,13 @@ export default [
   {
     firstTerm: 6,
     secondTerm: 12,
-    operation: "*",
+    operation: "x",
     answer: 72,
   },
   {
     firstTerm: 14,
     secondTerm: 12,
-    operation: "*",
+    operation: "x",
     answer: 168,
   },
   {
@@ -536,31 +536,31 @@ export default [
   {
     firstTerm: 29,
     secondTerm: 20,
-    operation: "*",
+    operation: "x",
     answer: 580,
   },
   {
     firstTerm: 12,
     secondTerm: 11,
-    operation: "*",
+    operation: "x",
     answer: 132,
   },
   {
     firstTerm: 43,
     secondTerm: 43,
-    operation: "*",
+    operation: "x",
     answer: 1849,
   },
   {
     firstTerm: 100,
     secondTerm: 25,
-    operation: "/",
+    operation: "÷",
     answer: 4,
   },
   {
     firstTerm: 28,
     secondTerm: 2,
-    operation: "/",
+    operation: "÷",
     answer: 14,
   },
   {
@@ -572,13 +572,13 @@ export default [
   {
     firstTerm: 19,
     secondTerm: 18,
-    operation: "*",
+    operation: "x",
     answer: 342,
   },
   {
     firstTerm: 109,
     secondTerm: 109,
-    operation: "*",
+    operation: "x",
     answer: 11881,
   },
   {
@@ -590,13 +590,13 @@ export default [
   {
     firstTerm: 20,
     secondTerm: 20,
-    operation: "*",
+    operation: "x",
     answer: 400,
   },
   {
     firstTerm: 50,
     secondTerm: 50,
-    operation: "*",
+    operation: "x",
     answer: 2500,
   },
 ];
