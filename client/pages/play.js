@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import io from "socket.io-client";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import Container from "@/components/Container";
+import Calculator from "@/components/Calculator";
+import StatusBar from "@/components/StatusBar";
+import Operation from "@/components/Operation";
+import operations from "../utils/operations";
+import useSound from "use-sound";
+import beepSound from "../utils/beep.mp3";
 
 let socket;
 const ENDPOINT = "http://localhost:8000";
@@ -17,8 +22,16 @@ export default function Game(props) {
   const [roomFull, setRoomFull] = useState(false);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState("");
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+
+  //Player 1 states
+  const [playerOneAnswer, setPlayerOneAnswer] = useState(0);
+  const [playerOneOperationsMade, setPlayerOneOperationsMade] = useState(0);
+
+  //Player 2 states
+  const [playerTwoAnswer, setPlayerTwoAnswer] = useState(0);
+  const [playerTwoOperationsMade, setPlayerTwoOperationsMade] = useState(0);
+
+  //Game states
 
   useEffect(() => {
     const connectionOptions = {
@@ -42,44 +55,125 @@ export default function Game(props) {
   }, []);
 
   //initialize game state
-  const [gameOver, setGameOver] = useState(true);
+  const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState("");
-  const [turn, setTurn] = useState("");
-
-  const [currentNumber, setCurrentNumber] = useState("");
-
-  //runs once on component mount
-  useEffect(() => {
-    //shuffle PACK_OF_CARDS array
-  }, []);
+  const [currentOperation, setCurrentOperation] = useState({});
+  const [numbers, setNumbers] = useState([]);
+  const [play] = useSound(beepSound);
 
   useEffect(() => {
-    socket.on("initGameState", ({ gameOver, turn, currentNumber }) => {
+    socket.on("initGameState", ({ gameOver, currentOperation, numbers }) => {
       setGameOver(gameOver);
-      setTurn(turn);
-      setCurrentNumber(currentNumber);
+      setCurrentOperation(currentOperation);
+      setNumbers(numbers);
+      setPlayerOneOperationsMade(0);
+      setPlayerTwoOperationsMade(0);
     });
-
     socket.on(
       "updateGameState",
-      ({ gameOver, winner, turn, currentNumber }) => {
-        gameOver && setGameOver(gameOver);
-        gameOver === true && playGameOverSound();
+      ({
+        winner,
+        gameOver,
+        currentOperation,
+        numbers,
+        playerOneOperationsMade,
+        playerTwoOperationsMade,
+      }) => {
         winner && setWinner(winner);
-        turn && setTurn(turn);
-        currentNumber && setCurrentNumber(currentNumber);
-        setUnoButtonPressed(false);
+        gameOver && setGameOver(gameOver);
+        currentOperation && setCurrentOperation(currentOperation);
+        numbers && setNumbers(numbers);
+        playerOneOperationsMade &&
+          setPlayerOneOperationsMade(playerOneOperationsMade);
+        playerTwoOperationsMade &&
+          setPlayerTwoOperationsMade(playerTwoOperationsMade);
       }
     );
-
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
-
     socket.on("currentUserData", ({ name }) => {
       setCurrentUser(name);
     });
   }, []);
+
+  //runs once on component mount
+  useEffect(() => {
+    const numbers = [];
+    for (let i = 0; i < 100; i++) {
+      numbers.push(i);
+    }
+    for (let i = numbers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+    let number = numbers.shift();
+    setCurrentOperation(operations[number]);
+    setNumbers(numbers);
+
+    console.log(operations[number]);
+    console.log(numbers);
+    socket.emit("initGameState", {
+      gameOver: false,
+      currentOperation: operations[number],
+      numbers: numbers,
+    });
+  }, []);
+
+  //some util functions
+
+  const checkGameOver = (operationsMade) => {
+    return operationsMade === 5;
+  };
+
+  const checkWinner = (operationsMade, player) => {
+    return operationsMade === 5 ? player : "";
+  };
+
+  useEffect(() => {
+    if (currentOperation) {
+      if (playerOneAnswer === currentOperation.answer) {
+        let numbersCopy = [...numbers];
+        setNumbers(numbersCopy);
+        setPlayerOneAnswer(0);
+        play();
+        setPlayerTwoAnswer(0);
+        console.log("player one answered");
+        console.log(playerTwoOperationsMade + "pls");
+        socket.emit("updateGameState", {
+          winner: checkWinner(playerOneOperationsMade + 1, "Player 1"),
+          gameOver: checkGameOver(playerOneOperationsMade + 1),
+          currentOperation: operations[numbersCopy.shift()],
+          numbers: numbersCopy,
+          playerOneOperationsMade: playerOneOperationsMade + 1,
+          playerTwoOperationsMade: playerTwoOperationsMade - 1,
+        });
+      } else if (playerTwoAnswer === currentOperation.answer) {
+        let numbersCopy = [...numbers];
+        setNumbers(numbersCopy);
+        setPlayerTwoAnswer(0);
+        play();
+        setPlayerOneAnswer(0);
+        console.log("player two answered");
+        socket.emit("updateGameState", {
+          winner: checkWinner(playerTwoOperationsMade + 1, "Player 2"),
+          gameOver: checkGameOver(playerTwoOperationsMade + 1),
+          currentOperation: operations[numbersCopy.shift()],
+          numbers: numbersCopy,
+          playerOneOperationsMade: playerOneOperationsMade - 1,
+          playerTwoOperationsMade: playerTwoOperationsMade + 1,
+        });
+      }
+    }
+  }, [playerOneAnswer, playerTwoAnswer]);
+
+  function updatePlayerOneAnswer(newAnswer) {
+    setPlayerOneAnswer(newAnswer);
+  }
+
+  function updatePlayerTwoAnswer(newAnswer) {
+    setPlayerTwoAnswer(newAnswer);
+  }
 
   return (
     <GameLayout>
@@ -108,7 +202,7 @@ export default function Game(props) {
           )}
           {users.length === 2 && (
             <>
-              {!gameOver ? (
+              {gameOver ? (
                 <div>
                   {winner !== "" && (
                     <>
@@ -122,13 +216,35 @@ export default function Game(props) {
                   {/* PLAYER 1 VIEW */}
                   {currentUser === "Player 1" && (
                     <div className="container">
-                      <Container />
+                      <Operation
+                        operation={currentOperation}
+                        answer={playerOneAnswer}
+                      />
+                      <StatusBar
+                        operationsMade={playerOneOperationsMade}
+                        player={1}
+                      />
+                      <Calculator
+                        currentOperation={currentOperation}
+                        updateAnswer={updatePlayerOneAnswer}
+                      />
                     </div>
                   )}
                   {/* PLAYER 2 VIEW */}
                   {currentUser === "Player 2" && (
                     <div className="container">
-                      <Container />
+                      <Operation
+                        operation={currentOperation}
+                        answer={playerTwoAnswer}
+                      />
+                      <StatusBar
+                        operationsMade={playerTwoOperationsMade}
+                        player={2}
+                      />
+                      <Calculator
+                        currentOperation={currentOperation}
+                        updateAnswer={updatePlayerTwoAnswer}
+                      />
                     </div>
                   )}
                 </div>

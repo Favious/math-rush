@@ -4,7 +4,8 @@ import styled from "styled-components";
 export default function Operation({ operation, answer }) {
   return (
     <Section>
-      {operation.firstTerm &&
+      {operation &&
+        operation.firstTerm &&
         `${operation.firstTerm} ${operation.operation} ${operation.secondTerm}`}{" "}
       =&nbsp;{answer !== 0 && `${answer}`}
       <div className="underscore">_</div>
